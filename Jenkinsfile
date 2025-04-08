@@ -2,36 +2,26 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'Default' // Use the Node.js version configured in Jenkins
+        nodejs "Default"
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                // Clone the repository
-                checkout scm
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
-                // Install Node.js dependencies
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
-                // Run Playwright tests
-                sh 'npx playwright test'
+                bat 'npx playwright test'
             }
         }
     }
 
     post {
         always {
-            // Archive test results
-            junit '**/test-results/*.xml'
+            junit 'results/test-results/results.xml'
         }
     }
 }
