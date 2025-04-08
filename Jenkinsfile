@@ -13,8 +13,6 @@ pipeline {
              }
          }
  
- @@ -21,6 +22,7 @@
- 
      post {
          always {
              // Adjust the path below based on your Playwright reporter config
