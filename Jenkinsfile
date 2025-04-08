@@ -8,22 +8,21 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                bat 'npm install'
-                bat 'npx playwright install'
+                cmd 'npm ci'
+                cmd 'npx playwright install --with-deps'
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
-                bat 'npx playwright test'
+                cmd 'npx playwright test'
             }
         }
     }
 
     post {
         always {
-            // Adjust the path below based on your Playwright reporter config
-            junit 'results/test-results/results.xml'
+            junit 'path/to/your/test-results/results.xml'
         }
     }
 }
